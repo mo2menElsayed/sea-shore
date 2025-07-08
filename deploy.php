@@ -13,14 +13,19 @@ file_put_contents(__DIR__ . '/deploy.log', "[" . date('Y-m-d H:i:s') . "] Deploy
 
 $cmd = <<<BASH
 cd /home/clustev3/seashore
+
+# Reset code without touching .env or vendor
 git fetch origin
 git reset --hard origin/staging
+
+# Rebuild app
 composer install --no-dev --optimize-autoloader
-php artisan migrate --force
+
 php artisan config:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+php artisan migrate --force
 BASH;
 
 $output = shell_exec($cmd);
