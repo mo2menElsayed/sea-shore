@@ -1,0 +1,88 @@
+.bb-product-filter-items.filter-visual .bb-product-filter-item li label:before {
+    top: 4px !important;
+}
+
+.categories-image {
+    align-items: center;
+    background: var(--cowlor-dark);
+    border-radius: 10px;
+    display: flex;
+    height: 120px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+    margin-bottom: 5px;
+
+}
+
+.categories-image img {
+    margin-bottom: 0 !important;
+    border-radius: 10px;
+    /* -o-object-fit: contain;
+    object-fit: contain; */
+    /* width: 100%; */
+}
+
+.categories-image:hover img {
+    scale: 1.1;
+}
+
+.block--instagram{
+    height:337.500px;
+}
+.block--instagram img{
+    height: 100%;
+    width: 100%;
+}
+
+.cl_logo{
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+}
+
+.cl_logo img{
+      border-radius: 10px;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    transition: var(--transition);
+    width: 100%;
+}
+
+img{
+    vertical-align: middle
+}
+
+.section--instagram .section__follow-instagram{
+	background-color: rgb(2 110 148 / 70%)
+}
+
+.product .product__thumbnail{
+	height: 270px;
+}
+
+.product .product__thumbnail img{
+  height:100%
+}
+
+.bb-social-sharing .bb-social-sharing__item a{
+	line-height: 36px !important
+}
+
+
+.product__brand{
+	height: 45px
+}
+
+.product__brand__item{
+  height:30px
+}
+
+.header .logo img{
+  min-height: 95px
+}
+
+.whatsapp{
+  background: #25d366;
+}
