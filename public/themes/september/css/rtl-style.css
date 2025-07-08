@@ -33,10 +33,6 @@ body[dir=rtl] .badge .badge--sale {
     direction: ltr
 }
 
-body[dir=rtl] .owl-nav .owl-prev {
-    float: left
-}
-
 body[dir=rtl] .product--detail .tab-list li:last-child {
     margin-right: 30px
 }
@@ -319,4 +315,12 @@ body[dir=rtl] .product__attribute>label {
 
 .bb-product-filter-items.filter-visual .bb-product-filter-item label{
     padding-inline-start: 5px !important;
+}
+
+.icon-arrow-left:before {
+    content: "\e829";
+}
+
+.icon-arrow-right:before {
+    content: "\e828";
 }
