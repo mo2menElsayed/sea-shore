@@ -1,5 +1,6 @@
 <?php
-
+var_dump($_SERVER);
+exit(0);
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
