@@ -1,5 +1,5 @@
 <?php
-var_dump('This is a test');
+var_dump('This is a tesst');
 exit(0);
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
