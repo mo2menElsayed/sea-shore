@@ -86,3 +86,7 @@ img{
 .whatsapp{
   background: #25d366;
 }
+
+.product--detail .product__info{
+	text-align: right !important
+}
