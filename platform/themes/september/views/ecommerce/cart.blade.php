@@ -19,10 +19,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $originalSubTotal = 0;
+                                @endphp
                                 @if (isset($products) && $products)
                                     @foreach (Cart::instance('cart')->content() as $key => $cartItem)
                                         @php
                                             $product = $products->where('id', $cartItem->id)->first();
+                                            $originalSubTotal +=
+                                                (float) ($product->front_sale_price != $product->price
+                                                    ? $product->price
+                                                    : $cartItem->price) * $cartItem->qty;
                                         @endphp
 
                                         @if (!empty($product))
@@ -87,8 +94,14 @@
                                                     </div>
                                                 </td>
                                                 <td data-title="{{ __('Total') }}">
-                                                    <span
-                                                        class="product__price">{{ format_price($cartItem->price * $cartItem->qty) }}</span>
+                                                    <div
+                                                        class="product__price @if ($product->front_sale_price != $product->price) sale @endif">
+                                                        <span>{{ format_price($cartItem->price * $cartItem->qty) }}</span>
+                                                        @if ($product->front_sale_price != $product->price)
+                                                            <small><del>{{ format_price($product->price * $cartItem->qty) }}</del></small>
+                                                        @endif
+                                                    </div>
+
                                                 </td>
                                                 <td data-title="{{ __('Remove') }}">
                                                     <a href="#"
@@ -112,7 +125,15 @@
                                         <h5>{{ __('Sub total') }}</h5>
                                     </td>
                                     <td>
-                                        <h5>{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</h5>
+                                        @php
+                                            $subTotal = Cart::instance('cart')->rawSubTotal();
+                                        @endphp
+                                        <h5 class="product__price @if ($subTotal != $originalSubTotal) sale @endif">
+                                            {{ format_price($subTotal) }}
+                                            @if ($subTotal != $originalSubTotal)
+                                                <small><del style="color: red">{{ format_price($originalSubTotal) }}</del></small>
+                                            @endif
+                                        </h5>
                                     </td>
                                 </tr>
                                 @if ($promotionDiscountAmount)
@@ -139,7 +160,8 @@
                                 @endif
                                 <tr class="total">
                                     <td colspan="4"><strong>{{ __('Total') }}</strong> <br />
-                                        <span>({{ __('Shipping fees not included') }})</span></td>
+                                        <span>({{ __('Shipping fees not included') }})</span>
+                                    </td>
                                     <td class="total__price product-subtotal">
                                         <span
                                             class="amount">{{ format_price(Cart::instance('cart')->rawTotal() - $promotionDiscountAmount - $couponDiscountAmount) }}</span>
@@ -150,7 +172,7 @@
                     </div>
                 </div>
                 <div class="form__submit text-right">
-                    
+
                     <button type="submit" class="btn--custom btn--outline btn--rounded" style="display: none"
                         name="checkout">{{ __('Checkout') }}</button>
 

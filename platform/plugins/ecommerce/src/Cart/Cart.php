@@ -88,7 +88,7 @@ class Cart
     public function addQuietly($id, $name = null, $qty = null, $price = null, array $options = [])
     {
         return static::withoutEvents(
-            fn () => $this->add($id, $name, $qty, $price, $options)
+            fn() => $this->add($id, $name, $qty, $price, $options)
         );
     }
 
@@ -220,7 +220,7 @@ class Cart
 
     public function updateQuietly($rowId, $qty)
     {
-        return static::withoutEvents(fn () => $this->update($rowId, $qty));
+        return static::withoutEvents(fn() => $this->update($rowId, $qty));
     }
 
     public function get(string $rowId): ?CartItem
@@ -249,7 +249,7 @@ class Cart
 
     public function removeQuietly($rowId)
     {
-        return static::withoutEvents(fn () => $this->remove($rowId));
+        return static::withoutEvents(fn() => $this->remove($rowId));
     }
 
     public function destroy(): void
@@ -422,7 +422,7 @@ class Cart
 
     public function storeQuietly($identifier)
     {
-        return static::withoutEvents(fn () => $this->store($identifier));
+        return static::withoutEvents(fn() => $this->store($identifier));
     }
 
     protected function storedCartWithIdentifierExists(string $identifier): bool
@@ -487,7 +487,7 @@ class Cart
 
     public function restoreQuietly($identifier)
     {
-        return static::withoutEvents(fn () => $this->restore($identifier));
+        return static::withoutEvents(fn() => $this->restore($identifier));
     }
 
     public function __get($attribute)
