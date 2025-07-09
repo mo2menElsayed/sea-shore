@@ -83,8 +83,14 @@
                             <span
                                 class="product-sale-price-text">{{ format_price($product->front_sale_price_with_taxes) }}</span>&nbsp;
                             <small><del class="product-price-text"
-                                    @if ($product->front_sale_price == $product->price) style="display: none" @endif>{{ format_price($product->price_with_taxes) }}</del></small>
+                                    @if ($product->front_sale_price == $product->price) style="display: none" @endif>{{ format_price($product->price_with_taxes) }}</del>
+                            </small>
                         </p>
+                        @if ($product->front_sale_price !== $product->price)
+                            <span class="text-success">
+                                {{ __('You save') }}: <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
+                            </span>
+                        @endif
                         <p>
                             @if (EcommerceHelper::isWishlistEnabled())
                                 <a class="product__add-wishlist add-to-wishlist-button" href="#"
@@ -157,12 +163,12 @@
 
 
                                 <a href="#" title="{{ __('Order From Whatsapp') }}"
-                                    class="btn btn--curve btn--custom btn-add-cart whatsapp" data-name="{{ $product->name }}"
-                                    data-url="{{ $product->url }}">
-                                    <svg class="icon  svg-icon-ti-ti-brand-whatsapp"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                    class="btn btn--curve btn--custom btn-add-cart whatsapp"
+                                    data-name="{{ $product->name }}" data-url="{{ $product->url }}">
+                                    <svg class="icon  svg-icon-ti-ti-brand-whatsapp" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
                                         <path

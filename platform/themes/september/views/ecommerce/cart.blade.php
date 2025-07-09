@@ -131,9 +131,16 @@
                                         <h5 class="product__price @if ($subTotal != $originalSubTotal) sale @endif">
                                             {{ format_price($subTotal) }}
                                             @if ($subTotal != $originalSubTotal)
-                                                <small><del style="color: red">{{ format_price($originalSubTotal) }}</del></small>
+                                                <small><del
+                                                        style="color: red">{{ format_price($originalSubTotal) }}</del></small>
                                             @endif
                                         </h5>
+                                        @if ($product->front_sale_price !== $product->price)
+                                            <span class="text-success">
+                                                {{ __('You save') }}:
+                                                <strong>{{ format_price($originalSubTotal - $subTotal) }}</strong>
+                                            </span>
+                                        @endif
                                     </td>
                                 </tr>
                                 @if ($promotionDiscountAmount)
