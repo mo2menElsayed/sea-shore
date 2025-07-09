@@ -88,7 +88,7 @@
                         </p>
                         @if ($product->front_sale_price !== $product->price)
                             <span class="text-success">
-                                {{ __('You save') }}: <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
+                                {{ __('Discount') }}: <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
                             </span>
                         @endif
                         <p>

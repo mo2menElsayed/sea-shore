@@ -137,7 +137,7 @@
                                         </h5>
                                         @if ($product->front_sale_price !== $product->price)
                                             <span class="text-success">
-                                                {{ __('You save') }}:
+                                                {{ __('We provide you with offers and discounts') }}:
                                                 <strong>{{ format_price($originalSubTotal - $subTotal) }}</strong>
                                             </span>
                                         @endif
