@@ -7,3 +7,9 @@
   text-align: right;
   direction: rtl;
 }
+
+
+.product--detail .product__color .color-swatch li span
+{
+  border: #000000 1px solid;
+}
