@@ -166,7 +166,7 @@ class StoreProductService
             ->mapWithKeys(fn ($item, $key) => [$key => [
                 'value' => $item['value'] ?? null,
                 'hidden' => $item['hidden'] ?? false,
-                'order' => $item['order'] ?? 0,
+                'order' => $item['order'] ?? 100,
             ]]);
 
         $product->specificationAttributes()->sync($specificationAttributes);

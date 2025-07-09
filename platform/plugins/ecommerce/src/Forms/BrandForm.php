@@ -52,7 +52,7 @@ class BrandForm extends FormAbstract
                 OnOffField::class,
                 OnOffFieldOption::make()
                     ->label(trans('core/base::forms.is_featured'))
-                    ->defaultValue(false)
+                    ->defaultValue(true)
             )
             ->add(
                 'categories[]',

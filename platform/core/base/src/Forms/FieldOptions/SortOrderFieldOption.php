@@ -9,6 +9,6 @@ class SortOrderFieldOption extends TextFieldOption
         return parent::make()
             ->label(trans('core/base::forms.sort_order'))
             ->placeholder(trans('core/base::forms.order_by_placeholder'))
-            ->defaultValue(0);
+            ->defaultValue(100);
     }
 }
