@@ -2,6 +2,6 @@
 
 
 
-.product--detail .product__info{
+.product--detail .product__desc, #tab-description{
 	text-align: right 
 }

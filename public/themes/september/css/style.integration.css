@@ -1,92 +1,94 @@
 .bb-product-filter-items.filter-visual .bb-product-filter-item li label:before {
-    top: 4px !important;
+  top: 4px !important;
 }
 
 .categories-image {
-    align-items: center;
-    background: var(--cowlor-dark);
-    border-radius: 10px;
-    display: flex;
-    height: 120px;
-    justify-content: center;
-    overflow: hidden;
-    padding: 5px;
-    margin-bottom: 5px;
+  align-items: center;
+  background: var(--cowlor-dark);
+  border-radius: 10px;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5px;
+  margin-bottom: 5px;
 
 }
 
 .categories-image img {
-    margin-bottom: 0 !important;
-    border-radius: 10px;
-    /* -o-object-fit: contain;
+  margin-bottom: 0 !important;
+  border-radius: 10px;
+  /* -o-object-fit: contain;
     object-fit: contain; */
-    /* width: 100%; */
+  /* width: 100%; */
 }
 
 .categories-image:hover img {
-    scale: 1.1;
+  scale: 1.1;
 }
 
-.block--instagram{
-    height:337.500px;
-}
-.block--instagram img{
-    height: 100%;
-    width: 100%;
+.block--instagram {
+  height: 337.500px;
 }
 
-.cl_logo{
-    width: 120px;
-    height: 120px;
-    line-height: 120px;
+.block--instagram img {
+  height: 100%;
+  width: 100%;
 }
 
-.cl_logo img{
-      border-radius: 10px;
-    height: 100%;
-    -o-object-fit: contain;
-    object-fit: contain;
-    transition: var(--transition);
-    width: 100%;
+.cl_logo {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
 }
 
-img{
-    vertical-align: middle
+.cl_logo img {
+  border-radius: 10px;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  transition: var(--transition);
+  width: 100%;
 }
 
-.section--instagram .section__follow-instagram{
-	background-color: rgb(2 110 148 / 70%)
+img {
+  vertical-align: middle
 }
 
-.product .product__thumbnail{
-	height: 270px;
+.section--instagram .section__follow-instagram {
+  background-color: rgb(2 110 148 / 70%)
 }
 
-.product .product__thumbnail img{
-  height:100%
+.product .product__thumbnail {
+  height: 270px;
 }
 
-.bb-social-sharing .bb-social-sharing__item a{
-	line-height: 36px !important
+.product .product__thumbnail img {
+  height: 100%
+}
+
+.bb-social-sharing .bb-social-sharing__item a {
+  line-height: 36px !important
 }
 
 
-.product__brand{
-	height: 45px
+.product__brand {
+  height: 45px
 }
 
-.product__brand__item{
-  height:30px
+.product__brand__item {
+  height: 30px
 }
 
-.header .logo img{
+.header .logo img {
   min-height: 95px
 }
 
-.whatsapp{
+.whatsapp {
   background: #25d366;
 }
 
-.product--detail .product__info{
-	text-align: right !important
+.product--detail .product__desc,
+#tab-description {
+  text-align: right
 }
