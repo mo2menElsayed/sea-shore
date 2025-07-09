@@ -13,7 +13,7 @@ if (! function_exists('get_featured_brands')) {
             ->orderBy('order')->latest()
             ->with($with)
             ->withCount($withCount)
-            ->take($limit)
+            // ->take($limit)
             ->get();
     }
 }
