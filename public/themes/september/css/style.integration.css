@@ -90,5 +90,6 @@ img {
 
 .product--detail .product__desc,
 #tab-description {
-  text-align: right
+  text-align: right;
+  direction: rtl;
 }

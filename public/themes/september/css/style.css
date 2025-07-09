@@ -2,6 +2,8 @@
 
 
 
-.product--detail .product__desc, #tab-description{
-	text-align: right 
+.product--detail .product__desc,
+#tab-description {
+  text-align: right;
+  direction: rtl;
 }
