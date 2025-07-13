@@ -58,3 +58,4 @@ storage/framework/maintenance.php
 
 database.sql
 /public/storage
+deploy.php
