@@ -156,25 +156,27 @@ class ProductController extends BaseController
         StoreProductTagService $storeProductTagService
     ) {
         $product->status = $request->input('status');
-
-        $product = $service->execute($request, $product);
+        
+        $product = $service->execute($request, $product, true);
         $storeProductTagService->execute($request, $product);
-
+        
+        
         if ($request->has('variation_default_id')) {
             ProductVariation::query()
-                ->where('configurable_product_id', $product->getKey())
-                ->update(['is_default' => 0]);
-
+            ->where('configurable_product_id', $product->getKey())
+            ->update(['is_default' => 0]);
+            
             $defaultVariation = ProductVariation::query()->find($request->input('variation_default_id'));
-
+            
             if ($defaultVariation) {
                 $defaultVariation->is_default = true;
                 $defaultVariation->save();
             }
         }
-
+        
+        
         $addedAttributes = $request->input('added_attributes', []);
-
+        
         if ($request->input('is_added_attributes') == 1 && $addedAttributes) {
             $result = ProductVariation::getVariationByAttributesOrCreate($product->getKey(), $addedAttributes);
 
@@ -214,7 +216,6 @@ class ProductController extends BaseController
                 }, array_filter(explode(',', $request->input('grouped_products', ''))))
             );
         }
-
         $relatedProductIds = $product->variations()->pluck('product_id')->all();
 
         Product::query()->whereIn('id', $relatedProductIds)->update(['status' => $product->status]);

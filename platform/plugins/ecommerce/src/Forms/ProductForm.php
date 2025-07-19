@@ -260,7 +260,7 @@ class ProductForm extends FormAbstract
                     ]);
             })
             ->setBreakFieldPoint('status');
-            
+
         if (EcommerceHelper::isProductSpecificationEnabled()) {
             $this->addMetaBox(
                 MetaBox::make('product-specification-table')
@@ -308,9 +308,9 @@ class ProductForm extends FormAbstract
                 ],
             ]);
 
+
         if (!$totalProductVariations) {
             $this
-                ->removeMetaBox('variations')
                 ->addMetaBoxes([
                     'general' => [
                         'title' => trans('plugins/ecommerce::products.overview'),
@@ -356,8 +356,19 @@ class ProductForm extends FormAbstract
             }
 
             $this
-                ->removeMetaBox('general')
                 ->addMetaBoxes([
+                    'general' => [
+                        'title' => trans('plugins/ecommerce::products.overview'),
+                        'content' => view(
+                            'plugins/ecommerce::products.partials.general',
+                            [
+                                'product' => $productId ? $this->getModel() : null,
+                                'isVariation' => false,
+                                'originalProduct' => null,
+                            ]
+                        ),
+                        'priority' => 2,
+                    ],
                     'variations' => [
                         'title' => trans('plugins/ecommerce::products.product_has_variations'),
                         'content' => view('plugins/ecommerce::products.partials.configurable', [

@@ -144,6 +144,11 @@ class Product extends BaseModel
                     ->where('is_variation', 1)
                     ->update([
                         'name' => $product->name,
+                        'price' => $product->price,
+                        'sale_price' => $product->sale_price,
+                        'cost_per_item' => $product->cost_per_item,
+                        'start_date' => $product->start_date,
+                        'end_date' => $product->end_date,
                         'minimum_order_quantity' => $product->minimum_order_quantity,
                         'maximum_order_quantity' => $product->maximum_order_quantity,
                     ]);
