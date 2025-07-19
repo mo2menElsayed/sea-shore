@@ -8,7 +8,7 @@
                     @endif
                     @if (theme_option('address') || theme_option('hotline') || theme_option('email'))
                         <div class="col-md-6 col-sm-6 col-12">
-                            <aside class="widget widget--footer">
+                            <aside class="widget widget--footer" id="widget--about-us">
                                 <h3 class="widget__title">{{ theme_option('site_title') }}</h3>
                                 <div class="widget__content">
                                     
@@ -32,9 +32,9 @@
                             </aside>
                         </div>
                     @endif
-                    <ul class="col-md-6 col-sm-6 col-12">
+                    <ul class="col-md-6 col-sm-6 col-12" >
                         @if (is_plugin_active('newsletter'))
-                            <aside class="widget widget--footer">
+                            <aside class="widget widget--footer" >
                                 <h3 class="widget__title">{{ __('Subscribe & Receive 10% off your first order') }}</h3>
                                 <form class="generic-form" method="POST"
                                     action="{{ route('public.newsletter.subscribe') }}">
