@@ -96,7 +96,7 @@
                                 <br>
                             @endif
                             <span
-                                class="product-sale-price-text text-danger">{{ format_price($product->front_sale_price_with_taxes) }} mo2mn
+                                class="product-sale-price-text text-danger">{{ format_price($product->front_sale_price_with_taxes) }}
                             </span>
                         </p>
 
