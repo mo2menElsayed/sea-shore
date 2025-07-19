@@ -11,6 +11,11 @@
                             <aside class="widget widget--footer">
                                 <h3 class="widget__title">{{ theme_option('site_title') }}</h3>
                                 <div class="widget__content">
+                                    
+                                    @if (theme_option('seo_description'))
+                                        <p><pre
+                                                class="d-inline-block">{{ theme_option('seo_description') }}</pre></p>
+                                    @endif
                                     @if (theme_option('address'))
                                         <p><strong class="d-inline-block">{{ __('Address') }}:</strong>&nbsp;<span
                                                 class="d-inline-block">{{ theme_option('address') }}</span></p>

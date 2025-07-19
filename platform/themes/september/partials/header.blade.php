@@ -152,7 +152,13 @@
             </div>
         </div>
         <nav class="navigation">
+            @if (theme_option('seo_description'))
+                <p class="text-center">
+                    <span class="d-inline-block">{{ theme_option('seo_description') }}</span>
+                </p>
+            @endif
             <div class="container">
+
                 <div class="navigation__left">
                     <a class="logo" href="{{ route('public.index') }}">
                         @if ($logo = theme_option('logo'))

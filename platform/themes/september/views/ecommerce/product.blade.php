@@ -56,7 +56,7 @@
                         <div>
 
 
-                            @if ($product->sku)
+                            @if ($product->sku && 0)
                                 <span class="d-inline-block">{{ __('SKU') }}:</span> <span id="product-sku"
                                     class="sku d-inline-block" itemprop="sku">{{ $product->sku }}</span>
                             @endif
@@ -80,17 +80,23 @@
 
                     <div class="product__price @if ($product->front_sale_price !== $product->price) sale @endif">
                         <p>
-                            <span
-                                class="product-sale-price-text">{{ format_price($product->front_sale_price_with_taxes) }}</span>&nbsp;
-                            <small><del class="product-price-text"
+                            <small>
+                                <del class="product-price-text" style="color:#000"
                                     @if ($product->front_sale_price == $product->price) style="display: none" @endif>{{ format_price($product->price_with_taxes) }}</del>
                             </small>
-                        </p>
-                        @if ($product->front_sale_price !== $product->price)
-                            <span class="text-success">
-                                {{ __('Discount') }}: <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
+                            &nbsp;
+                            @if ($product->front_sale_price !== $product->price)
+                                <span class="text-danger">
+                                    {{ __('Discount') }} ({{ 100 -  (($product->front_sale_price_with_taxes / $product->price_with_taxes) * 100)}} %) :
+                                    <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
+                                </span>
+                                <br>
+                            @endif
+                            <span
+                                class="product-sale-price-text text-danger">{{ format_price($product->front_sale_price_with_taxes) }}
                             </span>
-                        @endif
+                        </p>
+
                         <p>
                             @if (EcommerceHelper::isWishlistEnabled())
                                 <a class="product__add-wishlist add-to-wishlist-button" href="#"
