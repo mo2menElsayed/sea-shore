@@ -20,6 +20,22 @@ app()->booted(function (): void {
 
     if (is_plugin_active('ecommerce')) {
         add_shortcode(
+            'about-us',
+            __('about-us'),
+            __('about-us'),
+            function (Shortcode $shortcode) {
+                return Theme::partial('short-codes.about-us', [
+                    'title' => $shortcode->title,
+                    'description' => $shortcode->description,
+                    'subtitle' => $shortcode->subtitle,
+                ]);
+            }
+        );
+        shortcode()->setAdminConfig('about-us', function (array $attributes) {
+            return Theme::partial('short-codes.about-us', compact('attributes'));
+        });
+
+        add_shortcode(
             'product-categories',
             __('Product categories'),
             __('Product categories'),
@@ -93,6 +109,10 @@ app()->booted(function (): void {
         shortcode()->setAdminConfig('featured-brands', function (array $attributes) {
             return Theme::partial('short-codes.featured-brands-admin-config', compact('attributes'));
         });
+
+
+
+
 
         add_shortcode(
             'product-collections',
@@ -253,6 +273,8 @@ app()->booted(function (): void {
             return Theme::getThemeNamespace() . '::partials.short-codes.contact-form';
         }, 120);
     }
+
+
 
     if (is_plugin_active('simple-slider')) {
         add_filter(SIMPLE_SLIDER_VIEW_TEMPLATE, function () {
