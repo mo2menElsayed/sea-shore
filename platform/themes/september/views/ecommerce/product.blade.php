@@ -87,7 +87,10 @@
                             &nbsp;
                             @if ($product->front_sale_price !== $product->price)
                                 <span class="text-danger">
-                                    {{ __('Discount') }} ({{ 100 -  (($product->front_sale_price_with_taxes / $product->price_with_taxes) * 100)}} %) :
+                                    @php
+                                        $dis_per = number_format((float)(100 -  (($product->front_sale_price_with_taxes / $product->price_with_taxes) * 100)), 2, '.', '');
+                                    @endphp
+                                    {{ __('Discount') }} ({{ $dis_per}} %) :
                                     <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
                                 </span>
                                 <br>
