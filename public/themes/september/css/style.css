@@ -22,14 +22,17 @@ root{--color-success:#00c9a7;--color-info:#96ed89;--color-warning:#faa806;--colo
     color: red;
 }
 
-@media (max-width: 767px) {
-  .section__content .product .product__thumbnail{
-    display: inline-block;
-    height: 185px
-  }
-}
 
 .product .product__badges{
   display: block;
   position: initial !important
+}
+
+@media (max-width: 767px) {
+  .section__content .product .product__thumbnail{
+    height: 185px
+  }
+  .section__content .product .product__badges{
+    display: inline-block;
+  }
 }
