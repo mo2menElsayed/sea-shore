@@ -6,7 +6,7 @@
                     <div class="product__badges">
                         <span class="badge" style="background-color: #000">{{ __('Out Of Stock') }}</span>
                     </div>
-                @else
+                {{-- @else
                     @if ($product->productLabels->count() || $product->front_sale_price !== $product->price)
                         <div class="product__badges">
                             @foreach ($product->productLabels as $label)
@@ -17,7 +17,7 @@
                                     class="badge badge--sale">{{ get_sale_percentage($product->price, $product->front_sale_price) }}</span>
                             @endif
                         </div>
-                    @endif
+                    @endif --}}
                 @endif
                 <a class="product__overlay" href="{{ $product->url }}" title="{{ $product->name }}"></a>
                 <img src="{{ RvMedia::getImageUrl($product->image, 'medium', false, RvMedia::getDefaultImage()) }}"
@@ -52,7 +52,17 @@
                     </ul>
                 @endif
             </div>
+
             <div class="product__content" data-mh="product-item">
+                <div class="product__badges">
+                    @foreach ($product->productLabels as $label)
+                        <span class="badge" {!! $label->css_styles !!}>{{ $label->name }}</span>
+                    @endforeach
+                    @if ($product->front_sale_price !== $product->price)
+                        <span
+                            class="badge badge--sale">{{ get_sale_percentage($product->price, $product->front_sale_price) }}</span>
+                    @endif
+                </div>
                 <a class="product__title" href="{{ $product->url }}">{!! BaseHelper::clean($product->name) !!}</a>
                 @if ($product->brand_id)
                     <img class="float-right product__brand__item" style=""

@@ -81,8 +81,8 @@
                     <div class="product__price @if ($product->front_sale_price !== $product->price) sale @endif">
                         <p>
                             <small>
-                                <del class="product-price-text" style="color:#000"
-                                    @if ($product->front_sale_price == $product->price) style="display: none" @endif>{{ format_price($product->price_with_taxes) }}</del>
+                                <del class="product-price-text" style="color:#000;
+                                    @if ($product->front_sale_price === $product->price) display: none @endif">{{ format_price($product->price_with_taxes) }}</del>
                             </small>
                             &nbsp;
                             @if ($product->front_sale_price !== $product->price)
@@ -90,8 +90,7 @@
                                     @php
                                         $dis_per = round((100 -  (($product->front_sale_price_with_taxes / $product->price_with_taxes) * 100)), 2);
                                     @endphp
-                                    {{ __('Discount') }} ({{ $dis_per}} %) :
-                                    <strong>{{ format_price($product->price - $product->front_sale_price_with_taxes) }}</strong>
+                                    {{ __('Discount') }} ({{ $dis_per}} %) 
                                 </span>
                                 <br>
                             @endif
