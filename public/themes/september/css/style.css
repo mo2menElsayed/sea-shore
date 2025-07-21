@@ -24,6 +24,7 @@ root{--color-success:#00c9a7;--color-info:#96ed89;--color-warning:#faa806;--colo
 
 @media (max-width: 767px) {
   .section__content .product .product__thumbnail{
+    display: inline-block;
     height: 185px
   }
 }
