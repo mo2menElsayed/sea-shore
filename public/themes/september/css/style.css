@@ -25,7 +25,7 @@ root{--color-success:#00c9a7;--color-info:#96ed89;--color-warning:#faa806;--colo
 
 .product .product__badges{
   display: block;
-  position: initial !important
+  position: initial !important;
 }
 
 @media (max-width: 767px) {
