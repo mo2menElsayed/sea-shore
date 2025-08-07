@@ -173,10 +173,6 @@ class EcommerceServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-
-        sleep(9);  // 21 seconds delay
-
-
         config([
             'auth.guards.customer' => [
                 'driver' => 'session',
