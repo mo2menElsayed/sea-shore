@@ -639,7 +639,7 @@
                     const productName = $product.data('name') || 'Product';
                     const productUrl = $product.data('url') || window.location.href;
 
-                    const whatsappNumber = '0201003173591';
+                    const whatsappNumber = '0201001516023';
                     const qty = $('.qty-input').val()
                     const message = `Hello, I saw this ${productName} in your website and I want to buy this ${productUrl} (x) ${qty}`;
                     window.open(
@@ -707,14 +707,14 @@
                     }
 
                     // Encode and open WhatsApp
-                    const whatsappNumber = '0201003173591';
+                    const whatsappNumber = '0201001516023';
                     const encodedMessage = encodeURIComponent(message);
                     window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`, '_blank');
 
                 }
             } catch (error) {
                 console.error('WhatsApp share error:', error);
-                window.open('https://api.whatsapp.com/send?phone=0201003173591', '_blank');
+                window.open('https://api.whatsapp.com/send?phone=0201001516023', '_blank');
             }
         });
 

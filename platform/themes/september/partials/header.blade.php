@@ -39,7 +39,10 @@
                         <img src="{{ RvMedia::getImageUrl($logo) }}" alt="{{ theme_option('site_title') }}"
                             loading="lazy" />
                     @endif
+                      <img src="https://pub-a5cbc67795e5406587a33b0473a3d19b.r2.dev/users/f1200268-d5b0-46e1-a45f-06bba8c5764f.jpeg" alt="{{ theme_option('site_title') }}"
+                            loading="lazy" />
                 </a>
+                
             </div>
             <div class="navigation__right">
                 <div class="header__actions">
@@ -159,6 +162,8 @@
                             <img src="{{ RvMedia::getImageUrl($logo) }}" alt="{{ theme_option('site_title') }}"
                                 loading="lazy" />
                         @endif
+                        <img src="https://pub-a5cbc67795e5406587a33b0473a3d19b.r2.dev/users/f1200268-d5b0-46e1-a45f-06bba8c5764f.jpeg" alt="{{ theme_option('site_title') }}"
+                            loading="lazy" />
                     </a>
                 </div>
                 <div class="navigation__center">
