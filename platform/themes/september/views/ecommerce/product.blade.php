@@ -162,7 +162,7 @@
                                     {{ __('Add to cart') }}
                                 </button>
                                 {{-- <span class="whatsapp-msg">
-                                    https://api.whatsapp.com/send?phone=0201003173591 &amp;text=Hello, I Seen This
+                                    https://api.whatsapp.com/send?phone=0201001516023 &amp;text=Hello, I Seen This
                                     {{ $product->name }} In Your Website And I Want to Buy This {{ $product->url }}
                                     (x)
                                     <span class="whatsapp-qty">1</span>

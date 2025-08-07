@@ -54,7 +54,7 @@
             </div>
 
             <div class="product__content" data-mh="product-item">
-                <div class="product__badges">
+                <div class="product__badges clearfix">
                     @foreach ($product->productLabels as $label)
                         <span class="badge" {!! $label->css_styles !!}>{{ $label->name }}</span>
                     @endforeach
