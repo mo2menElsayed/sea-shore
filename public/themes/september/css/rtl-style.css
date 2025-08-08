@@ -329,3 +329,8 @@ body[dir=rtl] .product__attribute>label {
 .icon-arrow-right:before {
     content: "\e828";
 }
+
+
+.menu--mobile>li.menu-item-has-children:not(.has-mega-menu) .sub-toggle{
+  margin: 0 --21px;
+}

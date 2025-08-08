@@ -73,7 +73,7 @@
                 </div>
             </div>
         </nav>
-         <div class="panel__content">
+         <div class="panel__content navigation--mobile">
                 {!! Menu::renderMenuLocation('main-menu', [
                     'options' => ['class' => 'menu menu--mobile'],
                     'view' => 'main-menu',
