@@ -5162,3 +5162,8 @@ body .toastify .toastify-icon {
 .panel__content .menu--mobile > li{
   height: 44px;
 }
+
+.language-wrapper{
+  left: 0;
+  position: absolute;
+}

@@ -306,18 +306,18 @@ body[dir=rtl] .product__attribute>label {
 }
 
 
-.bb-product-filter-content .bb-product-filter-item button{
-    left:0;
+.bb-product-filter-content .bb-product-filter-item button {
+    left: 0;
     right: initial
 }
 
 /* #local */
 
-.bb-product-filter-items li label:before{
+.bb-product-filter-items li label:before {
     right: -20px !important;
 }
 
-.bb-product-filter-items.filter-visual .bb-product-filter-item label{
+.bb-product-filter-items.filter-visual .bb-product-filter-item label {
     padding-inline-start: 5px !important;
 }
 
@@ -331,6 +331,11 @@ body[dir=rtl] .product__attribute>label {
 }
 
 
-.menu--mobile>li.menu-item-has-children:not(.has-mega-menu) > .sub-toggle{
-  margin: 0 -21px;
+.menu--mobile>li.menu-item-has-children:not(.has-mega-menu)>.sub-toggle {
+    margin: 0 -21px;
+}
+
+.language-wrapper {
+    right: 0;
+    position: absolute;
 }
