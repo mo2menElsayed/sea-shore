@@ -5165,5 +5165,6 @@ body .toastify .toastify-icon {
 
 .language-wrapper{
   right: 0;
+  left: initial;
   position: absolute;
 }

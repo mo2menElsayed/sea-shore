@@ -337,5 +337,6 @@ body[dir=rtl] .product__attribute>label {
 
 .language-wrapper {
     left: 0;
+    right: initial;
     position: absolute;
 }
