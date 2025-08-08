@@ -332,5 +332,5 @@ body[dir=rtl] .product__attribute>label {
 
 
 .menu--mobile>li.menu-item-has-children:not(.has-mega-menu) .sub-toggle{
-  margin: 0 --21px;
+  margin: 0 -21px;
 }
