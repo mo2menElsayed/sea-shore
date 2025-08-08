@@ -5151,7 +5151,7 @@ body .toastify .toastify-icon {
   position: absolute;
 }
 
-.menu--mobile>li.menu-item-has-children:not(.has-mega-menu) .sub-toggle{
+.menu--mobile>li.menu-item-has-children:not(.has-mega-menu) > .sub-toggle{
   margin: 0 -8px;
 }
 
