@@ -5141,3 +5141,24 @@ body .toastify .toastify-icon {
     display: inline-block;
   }
 }
+
+
+.navigation--mobile{
+  padding: 0 8px;
+}
+
+.menu--mobile .sub-menu{
+  position: absolute;
+}
+
+.menu--mobile>li.menu-item-has-children:not(.has-mega-menu) .sub-toggle{
+  margin: 0 -8px;
+}
+
+.panel__content .menu--mobile{
+  display: flex;
+}
+
+.panel__content .menu--mobile > li{
+  height: 44px;
+}

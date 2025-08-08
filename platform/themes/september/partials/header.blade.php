@@ -70,11 +70,15 @@
                             </a>
                         @endif
                     @endif
-                    <a class="panel-trigger" href="#panel-menu" title="{{ __('Menu') }}"><i
-                            class="feather icon icon-menu"></i></a>
                 </div>
             </div>
         </nav>
+         <div class="panel__content">
+                {!! Menu::renderMenuLocation('main-menu', [
+                    'options' => ['class' => 'menu menu--mobile'],
+                    'view' => 'main-menu',
+                ]) !!}
+            </div>
     </header>
     <header class="header" data-sticky="{{ theme_option('enabled_sticky_header', 'no') == 'yes' ? 'true' : 'false' }}">
         <div class="top-header d-none d-md-block">
