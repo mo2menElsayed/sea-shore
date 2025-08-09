@@ -639,9 +639,9 @@
                     const productName = $product.data('name') || 'Product';
                     const productUrl = $product.data('url') || window.location.href;
 
-                    const whatsappNumber = '0201001516023';
+                    const whatsappNumber = '201001516023';
                     const qty = $('.qty-input').val()
-                    const message = `Hello, I saw this ${productName} in your website and I want to buy this ${productUrl} (x) ${qty}`;
+                    const message = `مرحبًا، لقد شاهدت هذا المنتج (${productName}) في موقعكم وأرغب في شرائه: ${productUrl} (الكمية: ${qty})`;
                     window.open(
                         `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`,
                         '_blank'
@@ -681,20 +681,20 @@
                     });
 
                     // Build the message
-                    let message = "🛍️ *ORDER REQUEST* 🛍️\n\n";
-                    message += "Please process this order:\n\n";
+                    let message = "🛍️ *طلب شراء* 🛍️\n\n";
+                    message += "يرجى معالجة هذا الطلب:\n\n";
 
                     cartItems.forEach((item, index) => {
                         message += `*${index + 1}. ${item.name}*\n`;
-                        message += `   🔗 ${shortenUrl(item.url)}\n`;  // Added product URL
-                        message += `   ✖️ Quantity: ${item.quantity}\n`;
-                        message += `   💵 Price: ${item.price}\n`;
-                        message += `   ➗ Line Total: ${formatPrice(item.lineTotal)}\n\n`;
+                        message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
+                        message += `   ✖️ الكمية: ${item.quantity}\n`;
+                        message += `   💵 السعر: ${item.price}\n`;
+                        message += `   ➗ الإجمالي: ${formatPrice(item.lineTotal)}\n\n`;
                     });
 
                     message += "------------------------\n";
-                    message += `*💳 GRAND TOTAL:* ${formatPrice(subtotal)}\n\n`;
-                    message += "Please confirm availability and provide payment instructions. Thank you!";
+                    message += `*💳 الإجمالي الكلي:* ${formatPrice(subtotal)}\n\n`;
+                    message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
 
                     // Helper functions
                     function formatPrice(amount) {
@@ -707,14 +707,14 @@
                     }
 
                     // Encode and open WhatsApp
-                    const whatsappNumber = '0201001516023';
+                    const whatsappNumber = '201001516023';
                     const encodedMessage = encodeURIComponent(message);
                     window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`, '_blank');
 
                 }
             } catch (error) {
                 console.error('WhatsApp share error:', error);
-                window.open('https://api.whatsapp.com/send?phone=0201001516023', '_blank');
+                window.open('https://api.whatsapp.com/send?phone=201001516023', '_blank');
             }
         });
 
