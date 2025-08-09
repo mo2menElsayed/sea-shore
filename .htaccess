@@ -1,22 +1,11 @@
-RewriteEngine On
+RewriteEngine on
 
-# --- Force www domain ---
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
-
-# --- CORS Headers for fonts ---
-<IfModule mod_headers.c>
-    <FilesMatch "\.(woff|woff2|ttf|eot|otf)$">
-        Header set Access-Control-Allow-Origin "https://www.seashoreeg.com"
-    </FilesMatch>
-</IfModule>
-
-# --- Redirect Trailing Slashes If Not A Folder ---
+# Redirect Trailing Slashes If Not A Folder...
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [L,R=301]
 
-# --- Send all requests to public/ except for deploy.php --
 RewriteCond %{REQUEST_URI} !^public
+
 RewriteRule ^deploy\.php$ - [L]
 RewriteRule ^(.*)$ public/$1 [L]
