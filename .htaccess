@@ -1,11 +1,24 @@
-RewriteEngine on
+RewriteEngine On
 
-# Redirect Trailing Slashes If Not A Folder...
+# --- Force non-www ---
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+# --- CORS Headers for fonts ---
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff|woff2|ttf|eot|otf)$">
+        Header always set Access-Control-Allow-Origin "https://seashoreeg.com"
+        Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+    </FilesMatch>
+</IfModule>
+
+# --- Redirect Trailing Slashes If Not A Folder ---
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [L,R=301]
 
+# --- Send all requests to public/ except for deploy.php ---
 RewriteCond %{REQUEST_URI} !^public
-
 RewriteRule ^deploy\.php$ - [L]
 RewriteRule ^(.*)$ public/$1 [L]
