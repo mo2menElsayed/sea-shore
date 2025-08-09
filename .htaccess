@@ -20,7 +20,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [L,R=301]
 
-# --- Send all requests to public/ except for deploy.php ---
+# --- Send all requests to public/ except for deploy.php --
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^deploy\.php$ - [L]
 RewriteRule ^(.*)$ public/$1 [L]
