@@ -701,8 +701,8 @@
                     });
 
                     message += "------------------------\n";
-                    message += `*💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
-                    message += `*💳 الإجمالي الكلي: ${formatPrice(subtotal)}\n\n`;
+                    message += `💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+                    message += `💳 الإجمالي الكلي: ${formatPrice(subtotal)}\n\n`;
 
                     message += "------------------------\n";
                     message += "✅إمكانية البدل و المرتجع خلال ١٤ يوم\n\n";
