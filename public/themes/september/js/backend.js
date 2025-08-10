@@ -697,8 +697,8 @@
 
             
             message += "------------------------\n";
-            message += `*💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
-            message += `*💳 الإجمالي الكلي:${formatPrice(subtotal)}\n\n`;
+            message += `💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+            message += `💳 الإجمالي الكلي:${formatPrice(subtotal)}\n\n`;
 
             message += "------------------------\n";
             message += "✅ إمكانية البدل و المرتجع خلال ١٤ يوم.\n\n";
@@ -706,9 +706,6 @@
 
             message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
             return message;
-
-
-
         }
 
 
@@ -748,14 +745,15 @@
                     const productUrl = $product.data('url') || window.location.href;
                     const qty = $('.qty-input').val()
                     const message = `مرحبًا، لقد شاهدت هذا المنتج (${productName}) في موقعكم وأرغب في شرائه: ${productUrl} (الكمية: ${qty})`;
-                    window.open(
-                        `https://m.me/${profileId}?text=${encodeURIComponent(message)}`,
-                        '_blank'
-                    );
+                    // window.open(
+                    //     `https://m.me/${profileId}?text=${encodeURIComponent(message)}`,
+                    //     '_blank'
+                    // );
                 } else {
                     // Encode and open WhatsApp
-                    window.open(`https://m.me/${profileId}?text=${encodeURIComponent(orderCartMessage())}`, '_blank');
+                    // window.open(`https://m.me/${profileId}?text=${encodeURIComponent(orderCartMessage())}`, '_blank');
                 }
+                window.open(`https://www.fb.com/`, '_blank');
             } catch (error) {
                 console.error('WhatsApp share error:', error);
                 window.open(`https://m.me/${profileId}`, '_blank');
