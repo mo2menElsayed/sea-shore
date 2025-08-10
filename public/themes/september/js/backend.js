@@ -701,9 +701,14 @@
                     });
 
                     message += "------------------------\n";
-                    message += `*💳 العروض والخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
-                    message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
-                    message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
+                    message += `*💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+                    message += `*💳 الإجمالي الكلي: ${formatPrice(subtotal)}\n\n`;
+
+                    message += "------------------------\n";
+                    message += "✅إمكانية البدل و المرتجع خلال ١٤ يوم\n\n";
+                    message += "شحن سريع خلال يومين\n\n";
+
+                    message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم";
 
                     // Helper functions
                     function formatPrice(amount) {
