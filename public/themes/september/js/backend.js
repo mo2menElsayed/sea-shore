@@ -702,7 +702,7 @@
 
                     message += "------------------------\n";
                     message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
-                    message += `*💳 الخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+                    message += `*💳 العروض والخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
                     message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
 
                     // Helper functions
