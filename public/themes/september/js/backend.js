@@ -696,13 +696,13 @@
                         message += `*${index + 1}. ${item.name}*\n`;
                         message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
                         message += `    الكمية: ${item.quantity}\n`;
-                        message += `    السعر: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
+                        message += `    سعر القطعة: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
                         message += `    الإجمالي: ~${formatPrice(item.lineTotalBeforeDiscount)}~ ${formatPrice(item.lineTotal)}\n\n`;
                     });
 
                     message += "------------------------\n";
-                    message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
                     message += `*💳 العروض والخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+                    message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
                     message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
 
                     // Helper functions
