@@ -697,7 +697,7 @@
                 if(orderBy === 'messenger') {
                 message += `    سعر القطعة: ${formatPrice(item.price)} بدلا من ${formatPrice(item.beforeDiscount)}\n`;
                 }
-                message += `    🟰: ${formatPrice(item.lineTotal)}\n\n`;
+                message += `    =: ${formatPrice(item.lineTotal)}\n\n`;
             });
 
             
@@ -742,7 +742,7 @@
 
          $(document).on('click', '.message-facebook', function (e) {
             e.preventDefault();
-            const profileId = '61574252755949';
+            const profileId = 'seashore.eg';
             try {
                 if (!$(this).closest('.section--shopping-cart').length) {
                     const $product = $(this);
