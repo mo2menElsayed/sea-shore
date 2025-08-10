@@ -650,6 +650,7 @@
                     // Get all cart items with proper product names
                     let cartItems = [];
                     let subtotal = 0;
+                    let subtotalBeforeDiscount = 0;
 
                     $('.table--cart tbody tr').each(function () {
                         // Get product details
@@ -664,18 +665,24 @@
 
                         // Get price and quantity
                         const priceText = $(this).find('td:nth-child(2) .product__price span').first().text().trim();
+                        const beforeDiscountText = $(this).find('td:nth-child(2) .product__price del').first().text().trim();
                         const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+                        const beforeDiscount = parseFloat(beforeDiscountText.replace(/[^0-9.]/g, '')) || 0;
                         const quantity = parseInt($(this).find('.qty-input').val()) || 0;
                         const lineTotal = price * quantity;
+                        const lineTotalBeforeDiscount = beforeDiscount * quantity;
                         subtotal += lineTotal;
+                        subtotalBeforeDiscount += lineTotalBeforeDiscount;
 
                         if (productName) {
                             cartItems.push({
                                 name: productName + attributes,
                                 url: productUrl,
                                 quantity: quantity,
-                                price: priceText,
-                                lineTotal: lineTotal
+                                price: price,
+                                beforeDiscount: beforeDiscount,
+                                lineTotal: lineTotal,
+                                lineTotalBeforeDiscount: lineTotalBeforeDiscount,
                             });
                         }
                     });
@@ -683,22 +690,24 @@
                     // Build the message
                     let message = "🛍️ *طلب شراء* 🛍️\n\n";
                     message += "يرجى معالجة هذا الطلب:\n\n";
-
+                    console.log(cartItems);
+                    
                     cartItems.forEach((item, index) => {
                         message += `*${index + 1}. ${item.name}*\n`;
                         message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
-                        message += `   ✖️ الكمية: ${item.quantity}\n`;
-                        message += `   💵 السعر: ${item.price}\n`;
-                        message += `   ➗ الإجمالي: ${formatPrice(item.lineTotal)}\n\n`;
+                        message += `    الكمية: ${item.quantity}\n`;
+                        message += `    السعر: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
+                        message += `    الإجمالي: ~${formatPrice(item.lineTotalBeforeDiscount)}~ ${formatPrice(item.lineTotal)}\n\n`;
                     });
 
                     message += "------------------------\n";
-                    message += `*💳 الإجمالي الكلي:* ${formatPrice(subtotal)}\n\n`;
+                    message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
+                    message += `*💳 الخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
                     message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
 
                     // Helper functions
                     function formatPrice(amount) {
-                        return 'EGP ' + amount.toFixed(2);
+                        return  amount.toFixed(2) + ' ج.م';
                     }
 
                     function shortenUrl(url) {
