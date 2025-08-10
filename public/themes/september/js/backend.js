@@ -642,7 +642,7 @@
             return url.replace(/^https?:\/\/(www\.)?/i, '').split('?')[0];
         }
 
-        function orderCartMessage() {
+        function orderCartMessage(orderBy) {
             // Get all cart items with proper product names
             let cartItems = [];
             let subtotal = 0;
@@ -691,8 +691,13 @@
                 message += `*${index + 1}. ${item.name}*\n`;
                 message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
                 message += `    الكمية: ${item.quantity}\n`;
+                if(orderBy === 'whatsapp') {
                 message += `    سعر القطعة: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
-                message += `    الإجمالي: ~${formatPrice(item.lineTotalBeforeDiscount)}~ ${formatPrice(item.lineTotal)}\n\n`;
+                }
+                if(orderBy === 'messenger') {
+                message += `    سعر القطعة: ${formatPrice(item.price)} بدلا من ${formatPrice(item.beforeDiscount)}\n`;
+                }
+                message += `    🟰: ${formatPrice(item.lineTotal)}\n\n`;
             });
 
             
@@ -726,7 +731,7 @@
                     );
                 } else {
                     // Encode and open WhatsApp
-                    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(orderCartMessage())}`, '_blank');
+                    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(orderCartMessage('whatsapp'))}`, '_blank');
                 }
             } catch (error) {
                 console.error('WhatsApp share error:', error);
@@ -751,7 +756,7 @@
                     );
                 } else {
                     // Encode and open WhatsApp
-                    window.open(`https://m.me/${profileId}?text=${encodeURIComponent(orderCartMessage())}`, '_blank');
+                    window.open(`https://m.me/${profileId}?text=${encodeURIComponent(orderCartMessage('messenger'))}`, '_blank');
                 }
                 // window.open(`https://www.fb.com/`, '_blank');
             } catch (error) {
