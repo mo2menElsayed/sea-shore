@@ -88,6 +88,10 @@ img {
   background: #25d366;
 }
 
+.message-facebook {
+  background: #3b5998;
+}
+
 .product--detail .product__desc,
 #tab-description {
   text-align: right;

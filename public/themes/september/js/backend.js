@@ -631,15 +631,96 @@
             }
         })
 
+
+        // Helper functions
+        function formatPrice(amount) {
+            return amount.toFixed(2) + ' ج.م';
+        }
+
+        function shortenUrl(url) {
+            // Simple URL shortener for display purposes
+            return url.replace(/^https?:\/\/(www\.)?/i, '').split('?')[0];
+        }
+
+        function orderCartMessage() {
+            // Get all cart items with proper product names
+            let cartItems = [];
+            let subtotal = 0;
+            let subtotalBeforeDiscount = 0;
+
+            $('.table--cart tbody tr').each(function () {
+                // Get product details
+                const productLink = $(this).find('.product__content > div > a').first();
+                const productName = productLink.text().replace(/\([^)]*\)/g, '').trim();
+                const productUrl = productLink.attr('href');
+
+                // Get attributes
+                let attributes = '';
+                const attrText = $(this).find('small').first().text().trim();
+                if (attrText) attributes = ` (${attrText})`;
+
+                // Get price and quantity
+                const priceText = $(this).find('td:nth-child(2) .product__price span').first().text().trim();
+                const beforeDiscountText = $(this).find('td:nth-child(2) .product__price del').first().text().trim();
+                const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+                const beforeDiscount = parseFloat(beforeDiscountText.replace(/[^0-9.]/g, '')) || 0;
+                const quantity = parseInt($(this).find('.qty-input').val()) || 0;
+                const lineTotal = price * quantity;
+                const lineTotalBeforeDiscount = beforeDiscount * quantity;
+                subtotal += lineTotal;
+                subtotalBeforeDiscount += lineTotalBeforeDiscount;
+
+                if (productName) {
+                    cartItems.push({
+                        name: productName + attributes,
+                        url: productUrl,
+                        quantity: quantity,
+                        price: price,
+                        beforeDiscount: beforeDiscount,
+                        lineTotal: lineTotal,
+                        lineTotalBeforeDiscount: lineTotalBeforeDiscount,
+                    });
+                }
+            });
+
+            // Build the message
+            let message = "🛍️ *طلب شراء* 🛍️\n\n";
+            message += "يرجى معالجة هذا الطلب:\n\n";
+
+            cartItems.forEach((item, index) => {
+                message += `*${index + 1}. ${item.name}*\n`;
+                message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
+                message += `    الكمية: ${item.quantity}\n`;
+                message += `    سعر القطعة: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
+                message += `    الإجمالي: ~${formatPrice(item.lineTotalBeforeDiscount)}~ ${formatPrice(item.lineTotal)}\n\n`;
+            });
+
+            
+            message += "------------------------\n";
+            message += `*💳 العروض والخصومات وفرت لك: ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
+            message += `*💳 الإجمالي الكلي:${formatPrice(subtotal)}\n\n`;
+
+            message += "------------------------\n";
+            message += "✅ إمكانية البدل و المرتجع خلال ١٤ يوم.\n\n";
+            message += "🚚 شحن سريع خلال يومين \n\n";
+
+            message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
+            return message;
+
+
+
+        }
+
+
+
         $(document).on('click', '.whatsapp', function (e) {
             e.preventDefault();
+            const whatsappNumber = '201001516023';
             try {
                 if (!$(this).closest('.section--shopping-cart').length) {
                     const $product = $(this);
                     const productName = $product.data('name') || 'Product';
                     const productUrl = $product.data('url') || window.location.href;
-
-                    const whatsappNumber = '201001516023';
                     const qty = $('.qty-input').val()
                     const message = `مرحبًا، لقد شاهدت هذا المنتج (${productName}) في موقعكم وأرغب في شرائه: ${productUrl} (الكمية: ${qty})`;
                     window.open(
@@ -647,86 +728,39 @@
                         '_blank'
                     );
                 } else {
-                    // Get all cart items with proper product names
-                    let cartItems = [];
-                    let subtotal = 0;
-                    let subtotalBeforeDiscount = 0;
-
-                    $('.table--cart tbody tr').each(function () {
-                        // Get product details
-                        const productLink = $(this).find('.product__content > div > a').first();
-                        const productName = productLink.text().replace(/\([^)]*\)/g, '').trim();
-                        const productUrl = productLink.attr('href');
-
-                        // Get attributes
-                        let attributes = '';
-                        const attrText = $(this).find('small').first().text().trim();
-                        if (attrText) attributes = ` (${attrText})`;
-
-                        // Get price and quantity
-                        const priceText = $(this).find('td:nth-child(2) .product__price span').first().text().trim();
-                        const beforeDiscountText = $(this).find('td:nth-child(2) .product__price del').first().text().trim();
-                        const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
-                        const beforeDiscount = parseFloat(beforeDiscountText.replace(/[^0-9.]/g, '')) || 0;
-                        const quantity = parseInt($(this).find('.qty-input').val()) || 0;
-                        const lineTotal = price * quantity;
-                        const lineTotalBeforeDiscount = beforeDiscount * quantity;
-                        subtotal += lineTotal;
-                        subtotalBeforeDiscount += lineTotalBeforeDiscount;
-
-                        if (productName) {
-                            cartItems.push({
-                                name: productName + attributes,
-                                url: productUrl,
-                                quantity: quantity,
-                                price: price,
-                                beforeDiscount: beforeDiscount,
-                                lineTotal: lineTotal,
-                                lineTotalBeforeDiscount: lineTotalBeforeDiscount,
-                            });
-                        }
-                    });
-
-                    // Build the message
-                    let message = "🛍️ *طلب شراء* 🛍️\n\n";
-                    message += "يرجى معالجة هذا الطلب:\n\n";
-                    console.log(cartItems);
-                    
-                    cartItems.forEach((item, index) => {
-                        message += `*${index + 1}. ${item.name}*\n`;
-                        message += `   🔗 ${shortenUrl(item.url)}\n`;  // رابط المنتج
-                        message += `    الكمية: ${item.quantity}\n`;
-                        message += `    سعر القطعة: ~${formatPrice(item.beforeDiscount)}~ ${formatPrice(item.price)}\n`;
-                        message += `    الإجمالي: ~${formatPrice(item.lineTotalBeforeDiscount)}~ ${formatPrice(item.lineTotal)}\n\n`;
-                    });
-
-                    message += "------------------------\n";
-                    message += `*💳 العروض والخصومات وفرت لك:* ${formatPrice(subtotalBeforeDiscount - subtotal)}\n\n`;
-                    message += `*💳 الإجمالي الكلي:* ~${formatPrice(subtotalBeforeDiscount)}~ ${formatPrice(subtotal)}\n\n`;
-                    message += "يرجى تأكيد توفر المنتجات وتزويدي بتعليمات الدفع. شكراً لكم!";
-
-                    // Helper functions
-                    function formatPrice(amount) {
-                        return  amount.toFixed(2) + ' ج.م';
-                    }
-
-                    function shortenUrl(url) {
-                        // Simple URL shortener for display purposes
-                        return url.replace(/^https?:\/\/(www\.)?/i, '').split('?')[0];
-                    }
-
                     // Encode and open WhatsApp
-                    const whatsappNumber = '201001516023';
-                    const encodedMessage = encodeURIComponent(message);
-                    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`, '_blank');
-
+                    window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(orderCartMessage())}`, '_blank');
                 }
             } catch (error) {
                 console.error('WhatsApp share error:', error);
-                window.open('https://api.whatsapp.com/send?phone=201001516023', '_blank');
+                window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}`, '_blank');
             }
         });
 
+
+         $(document).on('click', '.message-facebook', function (e) {
+            e.preventDefault();
+            const profileId = '61574252755949';
+            try {
+                if (!$(this).closest('.section--shopping-cart').length) {
+                    const $product = $(this);
+                    const productName = $product.data('name') || 'Product';
+                    const productUrl = $product.data('url') || window.location.href;
+                    const qty = $('.qty-input').val()
+                    const message = `مرحبًا، لقد شاهدت هذا المنتج (${productName}) في موقعكم وأرغب في شرائه: ${productUrl} (الكمية: ${qty})`;
+                    window.open(
+                        `https://m.me/${profileId}?text=${encodeURIComponent(message)}`,
+                        '_blank'
+                    );
+                } else {
+                    // Encode and open WhatsApp
+                    window.open(`https://m.me/${profileId}?text=${encodeURIComponent(orderCartMessage())}`, '_blank');
+                }
+            } catch (error) {
+                console.error('WhatsApp share error:', error);
+                window.open(`https://m.me/${profileId}`, '_blank');
+            }
+        });
 
         function ajaxUpdateCart(_self) {
             _self.closest('.table--cart').addClass('content-loading')
@@ -972,7 +1006,7 @@
                 const href = $(this).prop('href')
 
                 if (href === '#') {
-                    return 
+                    return
                 }
 
                 fetchData(href, true)
