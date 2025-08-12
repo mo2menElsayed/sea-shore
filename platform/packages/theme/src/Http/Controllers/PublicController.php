@@ -23,6 +23,7 @@ class PublicController extends BaseController
     public function getIndex()
     {
         Theme::addBodyAttributes(['id' => 'page-home']);
+        SeoHelper::setImage("https://pub-a5cbc67795e5406587a33b0473a3d19b.r2.dev/general/open-graph-image-1.png");
 
         if (defined('PAGE_MODULE_SCREEN_NAME') && BaseHelper::getHomepageId()) {
             $data = (new PageService())->handleFrontRoutes(null);
