@@ -7,9 +7,10 @@ use Botble\Theme\Facades\SiteMapManager;
 use Botble\Theme\Facades\Theme;
 use Botble\Theme\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\MyPublicController;
 
 Theme::registerRoutes(function (): void {
-    Route::group(['controller' => PublicController::class], function (): void {
+    Route::group(['controller' => MyPublicController::class], function (): void {
         event(new ThemeRoutingBeforeEvent(app()->make('router')));
 
         Route::get('/', 'getIndex')->name('public.index');
