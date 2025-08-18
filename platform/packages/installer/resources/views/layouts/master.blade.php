@@ -1,33 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ Str::replace('_', '-', App::getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="IE=edge"
-    >
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('pageTitle', trans('packages/installer::installer.title'))</title>
 
-    <meta
-        name="description"
-        content="Installation Botble CMS v{{ get_cms_version() }}"
-    >
+    <meta name="description" content="Installation Botble CMS v{{ get_cms_version() }}">
 
-    <link
-        href="{{ asset('vendor/core/core/base/images/favicon.png') }}"
-        rel="icon"
-    >
+    <link href="{{ asset('vendor/core/core/base/images/favicon.png') }}" rel="icon">
 
     @include('core/base::components.layouts.header')
 
-    <link
-        href="{{ asset('vendor/core/packages/installer/css/style.css') }}?v={{ get_cms_version() }}"
-        rel="stylesheet"
-    />
+    <link href="{{ asset('vendor/core/packages/installer/css/style.css') }}?v={{ get_cms_version() }}"
+        rel="stylesheet" />
 
     <style>
         [v-cloak],
@@ -38,14 +25,7 @@
 
     @php
         Assets::getFacadeRoot()
-            ->removeStyles([
-                'fontawesome',
-                'select2',
-                'custom-scrollbar',
-                'datepicker',
-                'spectrum',
-                'fancybox',
-            ])
+            ->removeStyles(['fontawesome', 'select2', 'custom-scrollbar', 'datepicker', 'spectrum', 'fancybox'])
             ->removeScripts([
                 'excanvas',
                 'ie8-fix',
@@ -62,25 +42,24 @@
                 'fslightbox',
             ]);
     @endphp
-    {!!  Assets::renderHeader(['core']) !!}
+    {!! Assets::renderHeader(['core']) !!}
 
-    <link
-        href="{{ BaseHelper::getGoogleFontsURL() }}"
-        rel="preconnect"
-    >
+    <link href="{{ BaseHelper::getGoogleFontsURL() }}" rel="preconnect">
     <link
         href="{{ BaseHelper::getGoogleFontsURL('css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap') }}"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
     @yield('styles')
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DPJ55NCXD"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9DPJ55NCXD');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-9DPJ55NCXD');
     </script>
 </head>
 
@@ -106,9 +85,9 @@
                     <div class="col-md-3 p-4">
                         <div class="steps-backdrop"></div>
                         <x-core::step :counter="true" :vertical="true">
-                            @foreach(InstallerStep::getItems() as $step)
+                            @foreach (InstallerStep::getItems() as $step)
                                 <x-core::step.item :is-active="$currentStep === $loop->iteration">
-                                    @if($step->getRoute() && $currentStep > $loop->iteration)
+                                    @if ($step->getRoute() && $currentStep > $loop->iteration)
                                         <a href="{{ route($step->getRoute()) }}">{{ $step->getLabel() }}</a>
                                     @else
                                         {{ $step->getLabel() }}
@@ -143,7 +122,7 @@
         </div>
     </div>
 
-    {!!  Assets::renderFooter() !!}
+    {!! Assets::renderFooter() !!}
 
     <script type="text/javascript">
         var BotbleVariables = BotbleVariables || {
@@ -158,18 +137,18 @@
             <script type="text/javascript">
                 $(function() {
                     @if (Session::has('success_msg'))
-                    Botble.showSuccess('{{ session('success_msg') }}');
+                        Botble.showSuccess('{{ session('success_msg') }}');
                     @endif
                     @if (Session::has('error_msg'))
-                    Botble.showError('{{ session('error_msg') }}');
+                        Botble.showError('{{ session('error_msg') }}');
                     @endif
                     @if (isset($error_msg))
-                    Botble.showError('{{ $error_msg }}');
+                        Botble.showError('{{ $error_msg }}');
                     @endif
                     @if (isset($errors))
-                    @foreach ($errors->all() as $error)
-                    Botble.showError('{{ $error }}');
-                    @endforeach
+                        @foreach ($errors->all() as $error)
+                            Botble.showError('{{ $error }}');
+                        @endforeach
                     @endif
                 })
             </script>
@@ -178,4 +157,5 @@
 
     @yield('scripts')
 </body>
+
 </html>
